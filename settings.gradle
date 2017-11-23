@@ -1,1 +1,1 @@
-include ':app', ':behaviordemo'
+include ':app', ':behaviordemo', ':tablayoutdemo'
