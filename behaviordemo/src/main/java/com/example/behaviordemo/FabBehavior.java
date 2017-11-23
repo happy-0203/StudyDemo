@@ -8,8 +8,6 @@ import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.DecelerateInterpolator;
 
 /**
  * Created by cc on 2017/11/22.
@@ -32,7 +30,7 @@ public class FabBehavior extends FloatingActionButton.Behavior {
         //观察View开始滑动的时候回调
         Log.d("123", "开始滑动");
         return axes == ViewCompat.SCROLL_AXIS_VERTICAL || super.onStartNestedScroll(coordinatorLayout, child, directTargetChild,
-                target, axes,type);
+                target, axes, type);
     }
 
     @Override
@@ -53,13 +51,18 @@ public class FabBehavior extends FloatingActionButton.Behavior {
     }
 
     private void onShow(FloatingActionButton child) {
-        ViewCompat.animate(child).translationY(0).setInterpolator(new DecelerateInterpolator(3)).start();
+        //平移动画
+        // ViewCompat.animate(child).translationY(0).setInterpolator(new DecelerateInterpolator(3)).start();
+        //缩放动画
+        ViewCompat.animate(child).scaleY(1.0f).scaleX(1.0f).start();
     }
 
     private void onHide(FloatingActionButton child) {
 
         CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) child.getLayoutParams();
-
-        ViewCompat.animate(child).translationY(child.getHeight() + layoutParams.bottomMargin).setInterpolator(new AccelerateInterpolator(3)).start();
+        //平移动画
+        //ViewCompat.animate(child).translationY(child.getHeight() + layoutParams.bottomMargin).setInterpolator(new AccelerateInterpolator(3)).start();
+        //缩放动画
+        ViewCompat.animate(child).scaleY(0).scaleX(0).start();
     }
 }
